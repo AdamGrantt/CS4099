@@ -1,5 +1,6 @@
 package uk.co.adamgrant.cs4099;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -49,6 +50,11 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void startUserEntry(View v) {
+        Intent intent = new Intent(this, UserEntryActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -21,7 +21,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_sleep_entry" />
+        android:text="@string/button_sleep_entry"
+        android:onClick="startUserEntry"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
