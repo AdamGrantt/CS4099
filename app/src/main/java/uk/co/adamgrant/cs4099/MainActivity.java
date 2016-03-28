@@ -68,14 +68,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleNotification() {
         Intent myIntent = new Intent(this , NotifyService.class);
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        pendingIntent = PendingIntent.getService(this, 0, myIntent, 0);
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 19);
-        calendar.set(Calendar.MINUTE, 00);
-        calendar.set(Calendar.SECOND, 00);
-        //set repeating every 24 hours
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000 , pendingIntent);
+        startService(myIntent);
+//        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+//        pendingIntent = PendingIntent.getService(this, 0, myIntent, 0);
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.set(Calendar.HOUR_OF_DAY, 21);
+//        calendar.set(Calendar.MINUTE, 29);
+//        calendar.set(Calendar.SECOND, 00);
+//        //set repeating every 24 hours
+////        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000 , pendingIntent);
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 40*1000 , pendingIntent);
+
     }
 
     // ****************************** FOR HANDLING STORAGE OF LOCK/UNLOCK DATA ******************************
@@ -167,12 +170,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // ****************************** FOR HANDLING STORAGE OF LOCK/UNLOCK DATA ******************************
-
-    // ************************************** NOTIFICATIONS *************************************************
-
-
-
-    // ************************************** NOTIFICATIONS *************************************************
 
     public void start(View v) {
         Intent intent = new Intent(this, HomeActivity.class);
