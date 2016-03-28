@@ -1,5 +1,9 @@
 package uk.co.adamgrant.cs4099;
 
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +25,7 @@ import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-
+    PendingIntent pendingIntent;
     private BroadcastReceiver mReceiver;
 
     @Override
@@ -52,11 +56,26 @@ public class MainActivity extends AppCompatActivity {
         mReceiver = new ScreenReceiver();
         registerReceiver(mReceiver, filter);
 
+        // ******************* NOTIFICATION **********************
+        handleNotification();
+        // ******************* NOTIFICATION **********************
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+    }
+
+    private void handleNotification() {
+        Intent myIntent = new Intent(this , NotifyService.class);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        pendingIntent = PendingIntent.getService(this, 0, myIntent, 0);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 19);
+        calendar.set(Calendar.MINUTE, 00);
+        calendar.set(Calendar.SECOND, 00);
+        //set repeating every 24 hours
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000 , pendingIntent);
     }
 
     // ****************************** FOR HANDLING STORAGE OF LOCK/UNLOCK DATA ******************************
@@ -148,6 +167,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // ****************************** FOR HANDLING STORAGE OF LOCK/UNLOCK DATA ******************************
+
+    // ************************************** NOTIFICATIONS *************************************************
+
+
+
+    // ************************************** NOTIFICATIONS *************************************************
 
     public void start(View v) {
         Intent intent = new Intent(this, HomeActivity.class);
