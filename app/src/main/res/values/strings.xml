@@ -11,4 +11,6 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_user_entry">UserEntryActivity</string>
     <string name="title_activity_view_data">ViewDataActivity</string>
+    <string name="title_activity_raw_data">RawDataActivity</string>
+    <string name="title_activity_graph_data">GraphDataActivity</string>
 </resources>
