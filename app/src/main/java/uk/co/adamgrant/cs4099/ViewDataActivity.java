@@ -1,5 +1,6 @@
 package uk.co.adamgrant.cs4099;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,4 +28,13 @@ public class ViewDataActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    public void startViewRawLockData(View v) {
+        Intent intent = new Intent(this, ViewRawLockDataActivity.class);
+        startActivity(intent);
+    }
+
+    public void startViewGraphLockData(View v) {
+        Intent intent = new Intent(this, ViewGraphLockDataActivity.class);
+        startActivity(intent);
+    }
 }

@@ -7,6 +7,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_raw_data" tools:context="uk.co.adamgrant.cs4099.RawDataActivity">
+    tools:showIn="@layout/activity_raw_data" tools:context="uk.co.adamgrant.cs4099.ViewRawLockDataActivity">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
+    </ScrollView>
 </RelativeLayout>
