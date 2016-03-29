@@ -25,7 +25,7 @@ import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    PendingIntent pendingIntent;
+    Intent notifyIntent;
     private BroadcastReceiver mReceiver;
 
     @Override
@@ -63,22 +63,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
     }
 
     private void handleNotification() {
-        Intent myIntent = new Intent(this , NotifyService.class);
-        startService(myIntent);
-//        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-//        pendingIntent = PendingIntent.getService(this, 0, myIntent, 0);
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.set(Calendar.HOUR_OF_DAY, 21);
-//        calendar.set(Calendar.MINUTE, 29);
-//        calendar.set(Calendar.SECOND, 00);
-//        //set repeating every 24 hours
-////        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*60*60*1000 , pendingIntent);
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 40*1000 , pendingIntent);
-
+        notifyIntent = new Intent(this, NotifyService.class);
+        startService(notifyIntent);
     }
 
     // ****************************** FOR HANDLING STORAGE OF LOCK/UNLOCK DATA ******************************
