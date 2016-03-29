@@ -42,6 +42,7 @@ public class NotifyService extends Service {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 17);
         calendar.set(Calendar.MINUTE, 00);
+//        calendar.set(Calendar.MINUTE, Calendar.getInstance().get(Calendar.MINUTE) + 1);
         calendar.set(Calendar.SECOND, 00);
 
         long currentTime = ((startingTime.get(Calendar.HOUR_OF_DAY)*60*60) + (startingTime.get(Calendar.MINUTE)*60) + (startingTime.get(Calendar.SECOND))) * 1000;
@@ -69,7 +70,6 @@ public class NotifyService extends Service {
                 },
                 delay,
                 UPDATE_INTERVAL);
-
     }
 
     @Override
@@ -80,16 +80,32 @@ public class NotifyService extends Service {
         timer.cancel();
     }
 
-
     public void showNotification() {
-
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Sleep Entry Reminder")
-                        .setContentText("Have you entered your sleep for last night yet?");
+                        .setContentText("Remember to enter last nights sleep!");
 
-        mBuilder.setContentIntent(null);
+        // Creates an explicit intent for an Activity in your app
+        Intent resultIntent = new Intent(this, UserEntryActivity.class);
+
+        // The stack builder object will contain an artificial back stack for the
+        // started Activity.
+        // This ensures that navigating backward from the Activity leads out of
+        // your application to the Home screen.
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        // Adds the back stack for the Intent (but not the Intent itself)
+        stackBuilder.addParentStack(UserEntryActivity.class);
+        // Adds the Intent that starts the Activity to the top of the stack
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        0,
+                        PendingIntent.FLAG_ONE_SHOT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+        mBuilder.setAutoCancel(true);
 
         NotificationManager mManager =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

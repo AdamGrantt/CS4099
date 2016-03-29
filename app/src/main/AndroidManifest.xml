@@ -30,6 +30,7 @@
         <activity
             android:name=".UserEntryActivity"
             android:label="@string/title_activity_user_entry"
+            android:launchMode="singleTask"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
