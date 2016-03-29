@@ -25,40 +25,12 @@ import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-    Intent notifyIntent;
-    private BroadcastReceiver mReceiver;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Init file
-        File path = MainActivity.this.getFilesDir();
-        File file = new File(path, "lockData.txt");
-
-        if(file.exists()){
-            file.delete();
-        }
-
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
-
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        filter.addAction(Intent.ACTION_SCREEN_ON);
-
-        mReceiver = new ScreenReceiver();
-        registerReceiver(mReceiver, filter);
-
-        // ******************* NOTIFICATION **********************
         handleNotification();
-        // ******************* NOTIFICATION **********************
+        initDataCollection();
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -66,63 +38,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleNotification() {
-        notifyIntent = new Intent(this, NotifyService.class);
+        Intent notifyIntent = new Intent(this, NotifyService.class);
         startService(notifyIntent);
     }
 
-    // ****************************** FOR HANDLING STORAGE OF LOCK/UNLOCK DATA ******************************
-    public class ScreenReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
-            Calendar c = Calendar.getInstance();
-            int second = c.get(Calendar.SECOND);
-            int minute = c.get(Calendar.MINUTE);
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            int month = c.get(Calendar.MONTH);
-            int year = c.get(Calendar.YEAR);
-
-            if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF))
-            {
-                Log.v("$$$$$$", "In Method: ACTION_SCREEN_OFF");
-
-                writeToFile("Locked " + year + ", " + month + ", " + day + ", " + hour + ", " + minute + ", " + second);
-                // onPause() will be called.
-            }
-            else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON))
-            {
-                Log.v("$$$$$$", "In Method: ACTION_SCREEN_ON");
-
-                writeToFile("Unlocked " + year + ", " + month + ", " + day + ", " + hour + ", " + minute + ", " + second);
-
-                // on Resume will be called.
-
-                // Better check for whether the screen was already locked
-                // If locked, do not take any resuming action in onResume()
-                // Suggest you, not to take any resuming action here.
-            }
-            else if (intent.getAction().equals(Intent.ACTION_USER_PRESENT))
-            {
-                Log.v("$$$$$$", "In Method: ACTION_USER_PRESENT");
-                // Handle resuming events.
-            }
-        }
-    }
-
-    private void writeToFile(String data) {
-        File path = MainActivity.this.getFilesDir();
-        File file = new File(path, "lockData.txt");
-        try {
-            OutputStreamWriter out = new OutputStreamWriter(this.openFileOutput("lockData.txt", Context.MODE_APPEND));
-            out.write(data);
-            out.write('\n');
-            out.close();
-            Log.v("$$$$$$", "In Method: writeToFile(), " + data);
-        }
-        catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
+    private void initDataCollection() {
+        Intent dataIntent = new Intent(this, DataCollectionService.class);
+        startService(dataIntent);
     }
 
     @Override
@@ -150,12 +72,6 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onDestroy();
         Log.v("$$$$$$", "In Method: onDestroy()");
-
-        if(mReceiver != null) {
-
-            unregisterReceiver(mReceiver);
-            mReceiver = null;
-        }
     }
 
     // ****************************** FOR HANDLING STORAGE OF LOCK/UNLOCK DATA ******************************
