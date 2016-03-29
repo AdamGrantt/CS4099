@@ -48,6 +48,16 @@
             android:enabled="true"
             android:exported="true" >
         </service>
+
+        <activity
+            android:name=".ViewDataActivity"
+            android:label="@string/title_activity_view_data"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.co.adamgrant.cs4099.HomeActivity" />
+        </activity>
     </application>
 
 </manifest>

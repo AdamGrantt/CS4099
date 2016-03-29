@@ -57,4 +57,9 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void startViewData(View v) {
+        Intent intent = new Intent(this, ViewDataActivity.class);
+        startActivity(intent);
+    }
+
 }
