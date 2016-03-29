@@ -1,5 +1,9 @@
 package uk.co.adamgrant.cs4099;
 
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +25,7 @@ import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
-
+    Intent notifyIntent;
     private BroadcastReceiver mReceiver;
 
     @Override
@@ -52,11 +56,18 @@ public class MainActivity extends AppCompatActivity {
         mReceiver = new ScreenReceiver();
         registerReceiver(mReceiver, filter);
 
+        // ******************* NOTIFICATION **********************
+        handleNotification();
+        // ******************* NOTIFICATION **********************
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
 
+    private void handleNotification() {
+        notifyIntent = new Intent(this, NotifyService.class);
+        startService(notifyIntent);
     }
 
     // ****************************** FOR HANDLING STORAGE OF LOCK/UNLOCK DATA ******************************

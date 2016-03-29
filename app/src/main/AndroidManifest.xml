@@ -30,12 +30,19 @@
         <activity
             android:name=".UserEntryActivity"
             android:label="@string/title_activity_user_entry"
+            android:launchMode="singleTask"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="uk.co.adamgrant.cs4099.HomeActivity" />
         </activity>
+
+        <service
+            android:name=".NotifyService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
     </application>
 
 </manifest>
