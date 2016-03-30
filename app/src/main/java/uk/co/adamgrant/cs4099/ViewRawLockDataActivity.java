@@ -34,13 +34,10 @@ public class ViewRawLockDataActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // **************** ADDING DATA TEXT TO SCREEN ******************
-        // Create the text view
-        TextView textView = new TextView(this);
-        textView.setTextSize(20);
+        // Create the text view for the lock data
+        TextView textView = (TextView) findViewById(R.id.raw_lock_data);
         textView.setText(readFile());
 
-        // Set the text view as the activity layout
-        setContentView(textView);
         // **************** ADDING DATA TEXT TO SCREEN ******************
     }
 
