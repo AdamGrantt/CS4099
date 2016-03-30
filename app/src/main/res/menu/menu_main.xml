@@ -7,4 +7,12 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         app:showAsAction="never" />
+
+    <!--<item-->
+        <!--android:id="@+id/action_refresh"-->
+        <!--android:title="@string/refresh_button"-->
+        <!--android:icon="@mipmap/ic_action_refresh"-->
+        <!--android:orderInCategory="1"-->
+        <!--app:showAsAction="never"-->
+        <!--/>-->
 </menu>

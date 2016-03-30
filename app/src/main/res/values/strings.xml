@@ -10,6 +10,7 @@
     <string name="button_view_graph_lock_data">View Graphed Lock Data</string>
 
     <string name="raw_lock_data">No Data Found</string>
+    <string name="refresh_button">Refresh</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">HomeActivity</string>

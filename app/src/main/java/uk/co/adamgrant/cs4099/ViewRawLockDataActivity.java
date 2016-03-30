@@ -1,5 +1,6 @@
 package uk.co.adamgrant.cs4099;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,18 +29,21 @@ public class ViewRawLockDataActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                displayData();
+                Toast.makeText(ViewRawLockDataActivity.this, "Refreshed", Toast.LENGTH_LONG).show();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // **************** ADDING DATA TEXT TO SCREEN ******************
+        displayData();
+        // **************** ADDING DATA TEXT TO SCREEN ******************
+    }
+
+    public void displayData() {
         // Create the text view for the lock data
         TextView textView = (TextView) findViewById(R.id.raw_lock_data);
         textView.setText(readFile());
-
-        // **************** ADDING DATA TEXT TO SCREEN ******************
     }
 
     public String readFile()
