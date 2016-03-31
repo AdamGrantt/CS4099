@@ -34,9 +34,9 @@ public class DataCollectionService extends Service {
         // Init file
         File file = new File(dirPath, "lockData.txt");
 
-//        if(file.exists()){
-//            file.delete();
-//        }
+        if(file.exists()){
+            file.delete();
+        }
 
         if (!file.exists()) {
             try {
@@ -60,25 +60,23 @@ public class DataCollectionService extends Service {
         public void onReceive(Context context, Intent intent)
         {
             Calendar c = Calendar.getInstance();
-            int second = c.get(Calendar.SECOND);
-            int minute = c.get(Calendar.MINUTE);
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            int month = c.get(Calendar.MONTH);
-            int year = c.get(Calendar.YEAR);
+
+
+            long time = c.getTimeInMillis();
 
             if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF))
             {
                 Log.v("$$$$$$", "In Method: ACTION_SCREEN_OFF");
-
-                writeToFile("Locked " + year + ", " + month + ", " + day + ", " + hour + ", " + minute + ", " + second);
+                writeToFile("Locked " + time);
+//                writeToFile("Locked " + year + ", " + month + ", " + day + ", " + hour + ", " + minute + ", " + second);
                 // onPause() will be called.
             }
             else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON))
             {
                 Log.v("$$$$$$", "In Method: ACTION_SCREEN_ON");
 
-                writeToFile("Unlocked " + year + ", " + month + ", " + day + ", " + hour + ", " + minute + ", " + second);
+                writeToFile("Unlocked " + time);
+//                writeToFile("Unlocked " + year + ", " + month + ", " + day + ", " + hour + ", " + minute + ", " + second);
 
                 // on Resume will be called.
 

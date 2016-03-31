@@ -27,7 +27,6 @@ public class HomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -54,6 +53,11 @@ public class HomeActivity extends AppCompatActivity {
 
     public void startUserEntry(View v) {
         Intent intent = new Intent(this, UserEntryActivity.class);
+        startActivity(intent);
+    }
+
+    public void startViewData(View v) {
+        Intent intent = new Intent(this, ViewDataActivity.class);
         startActivity(intent);
     }
 

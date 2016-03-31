@@ -11,7 +11,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +22,7 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="uk.co.adamgrant.cs4099.MainActivity" />
@@ -32,7 +32,7 @@
             android:label="@string/title_activity_user_entry"
             android:launchMode="singleTask"
             android:parentActivityName=".HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="uk.co.adamgrant.cs4099.HomeActivity" />
@@ -48,6 +48,34 @@
             android:enabled="true"
             android:exported="true" >
         </service>
+
+        <activity
+            android:name=".ViewDataActivity"
+            android:label="@string/title_activity_view_data"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.co.adamgrant.cs4099.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".ViewRawLockDataActivity"
+            android:label="@string/title_activity_raw_data"
+            android:parentActivityName=".ViewDataActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.co.adamgrant.cs4099.ViewDataActivity" />
+        </activity>
+        <activity
+            android:name=".ViewGraphLockDataActivity"
+            android:label="@string/title_activity_graph_data"
+            android:parentActivityName=".ViewDataActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.co.adamgrant.cs4099.ViewDataActivity" />
+        </activity>
     </application>
 
 </manifest>
