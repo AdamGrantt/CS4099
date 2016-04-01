@@ -8,8 +8,9 @@
     <string name="button_info">App Information</string>
     <string name="button_view_raw_lock_data">View Raw Lock Data</string>
     <string name="button_view_graph_lock_data">View Graphed Lock Data</string>
-
+    <string name="button_view_raw_user_sleep_data">View Raw Sleep Data</string>
     <string name="raw_lock_data">No Data Found</string>
+    <string name="raw_user_sleep_data">No Data Found</string>
     <string name="refresh_button">Refresh</string>
 
     <string name="yesterday_date">Date Not Found</string>
@@ -29,4 +30,5 @@
     <string name="title_activity_view_data">ViewDataActivity</string>
     <string name="title_activity_raw_data">RawDataActivity</string>
     <string name="title_activity_graph_data">GraphDataActivity</string>
+    <string name="title_activity_view_raw_user_sleep_data">ViewRawUserSleepDataActivity</string>
 </resources>

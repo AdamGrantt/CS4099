@@ -34,6 +34,7 @@ public class DataCollectionService extends Service {
         // Init file
         File file = new File(dirPath, "lockData.txt");
 
+        // TESTING PURPOSES - REFRESH FILE ON CREATION
         if(file.exists()){
             file.delete();
         }
@@ -60,7 +61,6 @@ public class DataCollectionService extends Service {
         public void onReceive(Context context, Intent intent)
         {
             Calendar c = Calendar.getInstance();
-
 
             long time = c.getTimeInMillis();
 
@@ -93,7 +93,6 @@ public class DataCollectionService extends Service {
     }
 
     private void writeToFile(String data) {
-        File file = new File(dirPath, "lockData.txt");
         try {
             OutputStreamWriter out = new OutputStreamWriter(this.openFileOutput("lockData.txt", Context.MODE_APPEND));
             out.write(data);

@@ -8,12 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-public class ViewDataActivity extends AppCompatActivity {
+public class ViewDataHomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_data);
+        setContentView(R.layout.activity_view_data_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -35,6 +35,11 @@ public class ViewDataActivity extends AppCompatActivity {
 
     public void startViewGraphLockData(View v) {
         Intent intent = new Intent(this, ViewGraphLockDataActivity.class);
+        startActivity(intent);
+    }
+
+    public void startViewRawUserSleepData(View v) {
+        Intent intent = new Intent(this, ViewRawUserSleepDataActivity.class);
         startActivity(intent);
     }
 }
