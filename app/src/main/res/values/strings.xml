@@ -13,13 +13,13 @@
     <string name="refresh_button">Refresh</string>
 
     <string name="yesterday_date">Date Not Found</string>
-    <string name="sleep_at">Time you fell asleep (hh:mm) - </string>
-    <string name="edit_sleep_at_hour">22</string>
+    <string name="sleep_at">Time you fell asleep - </string>
+    <string name="edit_sleep_at_hour">00</string>
     <string name="edit_sleep_at_minute">00</string>
-    <string name="sleep_until">Time you woke up (hh:mm) - </string>
-    <string name="edit_sleep_until_hour">08</string>
+    <string name="sleep_until">Time you woke up - </string>
+    <string name="edit_sleep_until_hour">00</string>
     <string name="edit_sleep_until_minute">00</string>
-    <string name="slept_for">You slept for 10 hours</string>
+    <string name="slept_for">You slept for 0 hours and 0 minutes</string>
     <string name="button_submit_sleep_data">Submit</string>
 
     <string name="action_settings">Settings</string>
