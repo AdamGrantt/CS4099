@@ -258,7 +258,7 @@ public class UserEntryActivity extends AppCompatActivity {
 
     public void formatEditText(EditText editText) {
         if(editText.getText().toString().equals("")) {
-            editText.setText("00");
+            editText.setText(00);
         } else if (editText.length()==1) {
             String temp = 0 + editText.getText().toString();
             editText.setText(temp);
@@ -287,6 +287,8 @@ public class UserEntryActivity extends AppCompatActivity {
         }
         // CHANGE ACTIVITY CONTENT TO "YOU HAVE ALREADY ENTERED TODAYS DATA" / REFRESH ACTIVITY
     }
+    // ALLOW OPTIONAL DATE IN SUBMISSION - ALLOW BACKDATING
+    // OR ********************* RESTRICT SUBMISSION TO ONCE PER DAY - SUBMISSION HAS TO BE CURRENT DAY
     // IF ENTRY FOR TODAY - REMOVE FORM FROM PAGE
     // ON SUBMIT BUTTON - CLEARS FORM FROM PAGE & SUBMITS DATA
 
