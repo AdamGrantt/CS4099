@@ -20,6 +20,7 @@
     <string name="edit_sleep_until_hour">00</string>
     <string name="edit_sleep_until_minute">00</string>
     <string name="slept_for">You slept for 0 hours and 0 minutes</string>
+    <string name="sleep_entry_invalid"> Invalid</string>
     <string name="button_submit_sleep_data">Submit</string>
 
     <string name="action_settings">Settings</string>

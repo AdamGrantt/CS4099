@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -43,16 +45,18 @@ public class UserEntryActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // CHECK TO SEE IF ALREADY ENTERED DATA - IF SO....
+        // IF(!dataEntered())....
         initForm();
+        // ELSE ... change content to "ALREADY ENTERED FOR TODAY"
+    }
+
+    public void initForm() {
         TextView date = (TextView)findViewById(R.id.yesterday_date);
         date.setTextSize(16);
         Calendar c = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy");
         date.setText("Sleep data for: " + format.format(c.getTime()));
-    }
 
-    public void initForm() {
         initListeners();
     }
 
@@ -69,7 +73,8 @@ public class UserEntryActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                calcTimeSlept();
+                if(checkEntryValid())
+                    calcTimeSlept();
                 sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");            }
         });
 
@@ -79,7 +84,8 @@ public class UserEntryActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                calcTimeSlept();
+                if(checkEntryValid())
+                    calcTimeSlept();
                 sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");            }
         });
 
@@ -89,7 +95,8 @@ public class UserEntryActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                calcTimeSlept();
+                if(checkEntryValid())
+                    calcTimeSlept();
                 sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");            }
         });
 
@@ -101,10 +108,53 @@ public class UserEntryActivity extends AppCompatActivity {
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                calcTimeSlept();
+                if(checkEntryValid())
+                    calcTimeSlept();
                 sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");
             }
         });
+    }
+
+    public boolean checkEntryValid() {
+        TextView sleptUntilFlag = (TextView) findViewById(R.id.sleep_until_valid);
+        TextView sleptAtFlag = (TextView) findViewById(R.id.sleep_at_valid);
+
+        // Check SleptHour
+        if(!sleptUntilHour.getText().toString().equals("")) {
+            if (Integer.parseInt(sleptUntilHour.getText().toString()) > 24) {
+                sleptUntilFlag.setVisibility(View.VISIBLE);
+                return false;
+            }
+        }
+
+        // Check SleptMinute
+        if(!sleptUntilMinute.getText().toString().equals("")) {
+            if(Integer.parseInt(sleptUntilMinute.getText().toString()) > 60) {
+                sleptUntilFlag.setVisibility(View.VISIBLE);
+                return false;
+            }
+        }
+
+        sleptUntilFlag.setVisibility(View.INVISIBLE);
+
+        // Check WokeHour
+        if(!sleptAtHour.getText().toString().equals("")) {
+            if(Integer.parseInt(sleptAtHour.getText().toString()) > 24) {
+                sleptAtFlag.setVisibility(View.VISIBLE);
+                return false;
+            }
+        }
+        // Check WokeMinute
+        if(!sleptAtMinute.getText().toString().equals("")) {
+            if(Integer.parseInt(sleptAtMinute.getText().toString()) > 60) {
+                sleptAtFlag.setVisibility(View.VISIBLE);
+                return false;
+            }
+        }
+
+        sleptAtFlag.setVisibility(View.INVISIBLE);
+
+        return true;
     }
 
     public void calcTimeSlept() {
@@ -119,7 +169,6 @@ public class UserEntryActivity extends AppCompatActivity {
         if(sleptUntilHour.getText().toString().equals("")){
             wokeHour = 0;
         } else {
-            String slept = sleptUntilHour.getText().toString();
             wokeHour = Integer.parseInt(sleptUntilHour.getText().toString());
         }
 
@@ -161,10 +210,15 @@ public class UserEntryActivity extends AppCompatActivity {
     }
 
     public void onSubmit(View v){
-        Toast.makeText(this, "Data Submitted", Toast.LENGTH_LONG).show();
-        // CHANGE ACTIVITY CONTENT TO "YOU HAVE ALREADY ENTERED TODAYS DATA"
+        if(checkEntryValid()) {
+            Toast.makeText(this, "Data Submitted", Toast.LENGTH_LONG).show();
+            // SUBMIT DATA
+        } else {
+            Toast.makeText(this, "Entry Invalid - Fix Entry", Toast.LENGTH_LONG).show();
+        }
+        // CHANGE ACTIVITY CONTENT TO "YOU HAVE ALREADY ENTERED TODAYS DATA" / REFRESH ACTIVITY
     }
-    // CHECK VALUES ARE IN RANGE
+    // If entry single digit, add 0 to start of string
     // IF ENTRY FOR TODAY - REMOVE FORM FROM PAGE
     // ON SUBMIT BUTTON - CLEARS FORM FROM PAGE & SUBMITS DATA
 

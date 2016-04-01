@@ -31,6 +31,8 @@
         <EditText android:id="@+id/edit_sleep_at_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"
             android:hint="@string/edit_sleep_at_hour"
             />
         <TextView
@@ -40,8 +42,17 @@
         <EditText android:id="@+id/edit_sleep_at_minute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"
             android:hint="@string/edit_sleep_at_minute"
             />
+        <TextView
+            android:id="@+id/sleep_at_valid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:textColor="#d41243"
+            android:text="@string/sleep_entry_invalid"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -55,6 +66,8 @@
         <EditText android:id="@+id/edit_sleep_until_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"
             android:hint="@string/edit_sleep_until_hour"
             />
         <TextView
@@ -64,8 +77,17 @@
         <EditText android:id="@+id/edit_sleep_until_minute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"
             android:hint="@string/edit_sleep_until_minute"
             />
+        <TextView
+            android:id="@+id/sleep_until_valid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:textColor="#d41243"
+            android:text="@string/sleep_entry_invalid"/>
     </LinearLayout>
 
     <TextView
