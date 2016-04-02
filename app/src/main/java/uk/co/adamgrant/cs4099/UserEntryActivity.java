@@ -1,6 +1,7 @@
 package uk.co.adamgrant.cs4099;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,8 +27,14 @@ public class UserEntryActivity extends AppCompatActivity {
     int hours = 0;
     int minutes = 0;
 
+    EditText sleptAtDay;
+    EditText sleptAtMonth;
+    EditText sleptAtYear;
     EditText sleptAtHour;
     EditText sleptAtMinute;
+    EditText sleptUntilDay;
+    EditText sleptUntilMonth;
+    EditText sleptUntilYear;
     EditText sleptUntilHour;
     EditText sleptUntilMinute;
 
@@ -53,10 +60,7 @@ public class UserEntryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initFile();
-
-        // IF(!dataEntered())....
         initForm();
-        // ELSE ... change content to "ALREADY ENTERED FOR TODAY"
     }
 
     public void initFile() {
@@ -96,19 +100,25 @@ public class UserEntryActivity extends AppCompatActivity {
         date.setTextSize(16);
         Calendar c = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy");
-        date.setText("Sleep data for: " + format.format(c.getTime()));
+        date.setText("Todays date: " + format.format(c.getTime()));
 
         initListeners();
     }
 
     public void initListeners() {
         sleptFor = (TextView)findViewById(R.id.slept_for);
+        sleptAtDay = (EditText)findViewById(R.id.edit_sleep_at_day);
+        sleptAtMonth = (EditText)findViewById(R.id.edit_sleep_at_month);
+        sleptAtYear = (EditText)findViewById(R.id.edit_sleep_at_year);
         sleptAtHour = (EditText)findViewById(R.id.edit_sleep_at_hour);
         sleptAtMinute = (EditText)findViewById(R.id.edit_sleep_at_minute);
+        sleptUntilDay = (EditText) findViewById(R.id.edit_sleep_until_day);
+        sleptUntilMonth = (EditText) findViewById(R.id.edit_sleep_until_month);
+        sleptUntilYear = (EditText) findViewById(R.id.edit_sleep_until_year);
         sleptUntilHour = (EditText) findViewById(R.id.edit_sleep_until_hour);
         sleptUntilMinute = (EditText) findViewById(R.id.edit_sleep_until_minute);
 
-        sleptAtHour.addTextChangedListener(new TextWatcher() {
+        sleptUntilDay.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
             }
 
@@ -122,15 +132,32 @@ public class UserEntryActivity extends AppCompatActivity {
             }
         });
 
-        sleptAtMinute.addTextChangedListener(new TextWatcher() {
+        sleptUntilMonth.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
             }
+
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(checkEntryValid())
+                if (checkEntryValid())
                     calcTimeSlept();
-                sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");            }
+                sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");
+            }
+        });
+
+        sleptUntilYear.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (checkEntryValid())
+                    calcTimeSlept();
+                sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");
+            }
         });
 
         sleptUntilHour.addTextChangedListener(new TextWatcher() {
@@ -160,11 +187,105 @@ public class UserEntryActivity extends AppCompatActivity {
                 sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");
             }
         });
+
+        sleptAtDay.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (checkEntryValid())
+                    calcTimeSlept();
+                sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");
+            }
+        });
+
+        sleptAtMonth.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (checkEntryValid())
+                    calcTimeSlept();
+                sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");
+            }
+        });
+
+        sleptAtYear.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (checkEntryValid())
+                    calcTimeSlept();
+                sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");
+            }
+        });
+
+        sleptAtHour.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (checkEntryValid())
+                    calcTimeSlept();
+                sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");
+            }
+        });
+
+        sleptAtMinute.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (checkEntryValid())
+                    calcTimeSlept();
+                sleptFor.setText("You slept for " + hours + " hours and " + minutes + " minutes");
+            }
+        });
     }
 
     public boolean checkEntryValid() {
         TextView sleptUntilFlag = (TextView) findViewById(R.id.sleep_until_valid);
         TextView sleptAtFlag = (TextView) findViewById(R.id.sleep_at_valid);
+
+        // Check SleptDay
+        if(!sleptUntilDay.getText().toString().equals("")) {
+            if (Integer.parseInt(sleptUntilDay.getText().toString()) > 31) {
+                sleptUntilFlag.setVisibility(View.VISIBLE);
+                return false;
+            }
+        }
+
+        // Check SleptMonth
+        if(!sleptUntilMonth.getText().toString().equals("")) {
+            if (Integer.parseInt(sleptUntilMonth.getText().toString()) > 12) {
+                sleptUntilFlag.setVisibility(View.VISIBLE);
+                return false;
+            }
+        }
+
+        // Check SleptYear
+        if(!sleptUntilYear.getText().toString().equals("")) {
+            if (Integer.parseInt(sleptUntilYear.getText().toString()) > Calendar.getInstance().get(Calendar.YEAR)) {
+                sleptUntilFlag.setVisibility(View.VISIBLE);
+                return false;
+            }
+        }
 
         // Check SleptHour
         if(!sleptUntilHour.getText().toString().equals("")) {
@@ -183,6 +304,30 @@ public class UserEntryActivity extends AppCompatActivity {
         }
 
         sleptUntilFlag.setVisibility(View.INVISIBLE);
+
+        // Check WokeDay
+        if(!sleptAtDay.getText().toString().equals("")) {
+            if(Integer.parseInt(sleptAtDay.getText().toString()) > 31) {
+                sleptAtFlag.setVisibility(View.VISIBLE);
+                return false;
+            }
+        }
+
+        // Check WokeMonth
+        if(!sleptAtMonth.getText().toString().equals("")) {
+            if(Integer.parseInt(sleptAtMonth.getText().toString()) > 12) {
+                sleptAtFlag.setVisibility(View.VISIBLE);
+                return false;
+            }
+        }
+
+        // Check WokeYear
+        if(!sleptAtYear.getText().toString().equals("")) {
+            if(Integer.parseInt(sleptAtYear.getText().toString()) > Calendar.getInstance().get(Calendar.YEAR)) {
+                sleptAtFlag.setVisibility(View.VISIBLE);
+                return false;
+            }
+        }
 
         // Check WokeHour
         if(!sleptAtHour.getText().toString().equals("")) {
@@ -256,9 +401,12 @@ public class UserEntryActivity extends AppCompatActivity {
         }
     }
 
-    public void formatEditText(EditText editText) {
+    public void formatEditText(EditText editText, String no) {
         if(editText.getText().toString().equals("")) {
-            editText.setText(00);
+            editText.setText(no);
+        } else if (no.equals("0000") && editText.length() == 2) {
+            String temp = 20 + editText.getText().toString();
+            editText.setText(temp);
         } else if (editText.length()==1) {
             String temp = 0 + editText.getText().toString();
             editText.setText(temp);
@@ -266,10 +414,16 @@ public class UserEntryActivity extends AppCompatActivity {
     }
 
     public void format() {
-        formatEditText(sleptAtHour);
-        formatEditText(sleptAtMinute);
-        formatEditText(sleptUntilHour);
-        formatEditText(sleptUntilMinute);
+        formatEditText(sleptAtDay, "00");
+        formatEditText(sleptAtMonth, "00");
+        formatEditText(sleptAtYear, "0000");
+        formatEditText(sleptAtHour, "00");
+        formatEditText(sleptAtMinute, "00");
+        formatEditText(sleptUntilDay, "00");
+        formatEditText(sleptUntilMonth, "00");
+        formatEditText(sleptUntilYear, "0000");
+        formatEditText(sleptUntilHour, "00");
+        formatEditText(sleptUntilMinute, "00");
     }
 
     public void onSubmit(View v){
@@ -277,19 +431,16 @@ public class UserEntryActivity extends AppCompatActivity {
             format();
             Toast.makeText(this, "Data Submitted", Toast.LENGTH_LONG).show();
 
-            // Submit Data to File
-            Calendar c = Calendar.getInstance();
-            SimpleDateFormat format = new SimpleDateFormat("d/MMMM/yyyy");
-            String toFile = format.format(c.getTime()) + ": " + sleptAtHour.getText() + ":" + sleptAtMinute.getText() + " - " + sleptUntilHour.getText() + ":" + sleptUntilMinute.getText() + ", " + hours + ":" + minutes;
+            String toFile = sleptAtDay.getText() + "/" + sleptAtMonth.getText() + "/" + sleptAtYear.getText() + ": " + sleptAtHour.getText() + ":" + sleptAtMinute.getText() + " - " + sleptUntilDay.getText() + "/" + sleptUntilMonth.getText() + "/" + sleptUntilYear.getText() + ": " + sleptUntilHour.getText() + ":" + sleptUntilMinute.getText() + ", " + hours + ":" + minutes;
             writeToFile(toFile);
+
+            // Restart Activity - Refresh Form
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
         } else {
             Toast.makeText(this, "Entry Invalid - Fix Entry", Toast.LENGTH_LONG).show();
         }
-        // CHANGE ACTIVITY CONTENT TO "YOU HAVE ALREADY ENTERED TODAYS DATA" / REFRESH ACTIVITY
     }
-    // ALLOW OPTIONAL DATE IN SUBMISSION - ALLOW BACKDATING
-    // OR ********************* RESTRICT SUBMISSION TO ONCE PER DAY - SUBMISSION HAS TO BE CURRENT DAY
-    // IF ENTRY FOR TODAY - REMOVE FORM FROM PAGE
-    // ON SUBMIT BUTTON - CLEARS FORM FROM PAGE & SUBMITS DATA
-
+    // ALLOW DELETION OF ENTRIES? - CONFIRMATION BEFORE SUBMISSION?
 }
