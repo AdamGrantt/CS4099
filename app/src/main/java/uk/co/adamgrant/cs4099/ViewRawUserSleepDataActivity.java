@@ -2,6 +2,7 @@ package uk.co.adamgrant.cs4099;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,12 +15,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class ViewRawLockDataActivity extends AppCompatActivity {
+public class ViewRawUserSleepDataActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_raw_lock_data);
+        setContentView(R.layout.activity_view_raw_user_sleep_data);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -28,7 +29,7 @@ public class ViewRawLockDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 displayData();
-                Toast.makeText(ViewRawLockDataActivity.this, "Refreshed", Toast.LENGTH_LONG).show();
+                Toast.makeText(ViewRawUserSleepDataActivity.this, "Refreshed", Toast.LENGTH_LONG).show();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -40,14 +41,13 @@ public class ViewRawLockDataActivity extends AppCompatActivity {
 
     public void displayData() {
         // Create the text view for the lock data
-        TextView textView = (TextView) findViewById(R.id.raw_lock_data);
+        TextView textView = (TextView) findViewById(R.id.raw_user_sleep_data);
         textView.setText(readFile());
     }
 
-    public String readFile()
-    {
-        File path = ViewRawLockDataActivity.this.getFilesDir();
-        File file = new File(path, "lockData.txt");
+    public String readFile() {
+        File path = ViewRawUserSleepDataActivity.this.getFilesDir();
+        File file = new File(path, "userSleepData.txt");
         String contents;
         int length = (int) file.length();
 
@@ -70,10 +70,9 @@ public class ViewRawLockDataActivity extends AppCompatActivity {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
 
-        if(contents.equals(""))
+        if (contents.equals(""))
             contents = "No data found.";
 
         return contents;
     }
-
 }

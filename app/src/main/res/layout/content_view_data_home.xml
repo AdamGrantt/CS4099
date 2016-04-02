@@ -9,7 +9,7 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_view_data"
-    tools:context="uk.co.adamgrant.cs4099.ViewDataActivity">
+    tools:context="uk.co.adamgrant.cs4099.ViewDataHomeActivity">
 
     <Button
         android:layout_width="wrap_content"
@@ -21,4 +21,9 @@
         android:layout_height="wrap_content"
         android:text="@string/button_view_graph_lock_data"
         android:onClick="startViewGraphLockData"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_view_raw_user_sleep_data"
+        android:onClick="startViewRawUserSleepData"/>
 </LinearLayout>

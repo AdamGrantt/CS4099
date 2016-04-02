@@ -8,9 +8,27 @@
     <string name="button_info">App Information</string>
     <string name="button_view_raw_lock_data">View Raw Lock Data</string>
     <string name="button_view_graph_lock_data">View Graphed Lock Data</string>
-
+    <string name="button_view_raw_user_sleep_data">View Raw Sleep Data</string>
     <string name="raw_lock_data">No Data Found</string>
+    <string name="raw_user_sleep_data">No Data Found</string>
     <string name="refresh_button">Refresh</string>
+
+    <string name="yesterday_date">Date Not Found</string>
+    <string name="sleep_at">Fell asleep at - </string>
+    <string name="edit_sleep_at_year">0000</string>
+    <string name="edit_sleep_at_month">00</string>
+    <string name="edit_sleep_at_day">00</string>
+    <string name="edit_sleep_at_hour">00</string>
+    <string name="edit_sleep_at_minute">00</string>
+    <string name="sleep_until">Woke up at - </string>
+    <string name="edit_sleep_until_year">0000</string>
+    <string name="edit_sleep_until_month">00</string>
+    <string name="edit_sleep_until_day">00</string>
+    <string name="edit_sleep_until_hour">00</string>
+    <string name="edit_sleep_until_minute">00</string>
+    <string name="slept_for">You slept for 0 hours and 0 minutes</string>
+    <string name="sleep_entry_invalid"> Invalid</string>
+    <string name="button_submit_sleep_data">Submit</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">HomeActivity</string>
@@ -18,4 +36,5 @@
     <string name="title_activity_view_data">ViewDataActivity</string>
     <string name="title_activity_raw_data">RawDataActivity</string>
     <string name="title_activity_graph_data">GraphDataActivity</string>
+    <string name="title_activity_view_raw_user_sleep_data">ViewRawUserSleepDataActivity</string>
 </resources>

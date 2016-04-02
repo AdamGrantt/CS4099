@@ -50,7 +50,7 @@
         </service>
 
         <activity
-            android:name=".ViewDataActivity"
+            android:name=".ViewDataHomeActivity"
             android:label="@string/title_activity_view_data"
             android:parentActivityName=".HomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" >
@@ -61,20 +61,29 @@
         <activity
             android:name=".ViewRawLockDataActivity"
             android:label="@string/title_activity_raw_data"
-            android:parentActivityName=".ViewDataActivity"
+            android:parentActivityName=".ViewDataHomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.co.adamgrant.cs4099.ViewDataActivity" />
+                android:value=".ViewDataHomeActivity" />
         </activity>
         <activity
             android:name=".ViewGraphLockDataActivity"
             android:label="@string/title_activity_graph_data"
-            android:parentActivityName=".ViewDataActivity"
+            android:parentActivityName=".ViewDataHomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="uk.co.adamgrant.cs4099.ViewDataActivity" />
+                android:value=".ViewDataHomeActivity" />
+        </activity>
+        <activity
+            android:name=".ViewRawUserSleepDataActivity"
+            android:label="@string/title_activity_view_raw_user_sleep_data"
+            android:parentActivityName=".ViewDataHomeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ViewDataHomeActivity" />
         </activity>
     </application>
 
