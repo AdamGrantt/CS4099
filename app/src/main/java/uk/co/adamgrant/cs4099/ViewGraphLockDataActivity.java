@@ -8,10 +8,11 @@ import android.util.Log;
 import android.view.View;
 
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.*;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+
 
 import java.util.Calendar;
 import java.util.Date;
@@ -36,36 +37,19 @@ public class ViewGraphLockDataActivity extends AppCompatActivity {
             initLockGraph();
         } else {
             Log.v("$$$$$$", "No Data Found");
-            // NO DATA FOUND MESSAGE
         }
     }
 
     public void initLockGraph(){
-//        graph = (GraphView) findViewById(R.id.lock_graph);
-////        series = new LineGraphSeries<>(populateSeries(series));
-//        series = new BarGraphSeries<DataPoint>(new DataPoint[] {
-//                new DataPoint(0, 0),
-//                new DataPoint(1, 1),
-//                new DataPoint(3, 0),
-//                new DataPoint(5, 1)
-//        });
-//        graph.addSeries(series);
-
-        // generate Dates
-        Calendar calendar = Calendar.getInstance();
-        Date d1 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d2 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d3 = calendar.getTime();
-
         GraphView graph = (GraphView) this.findViewById(R.id.lock_graph);
 
-        DataPoint points[] = new DataPoint[data.getNoEntries()];
+        DataPoint points[] = new DataPoint[data.getNoEntries()*2];
         int count = 0;
         for(LockDataEntry entry: data.getEntries()) {
-
-            points[count] = new DataPoint(entry.getEpoch(), entry.getLocked());
+            Date date = new Date(entry.getEpoch());
+            points[count] = new DataPoint(date, (entry.getLocked() + 1) % 2);
+            count++;
+            points[count] = new DataPoint(date, entry.getLocked());
             count++;
         }
 
@@ -73,11 +57,6 @@ public class ViewGraphLockDataActivity extends AppCompatActivity {
 
         // you can directly pass Date objects to DataPoint-Constructor
         // this will convert the Date to double via Date#getTime()
-//        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-//                new DataPoint(d1, 1),
-//                new DataPoint(d2, 5),
-//                new DataPoint(d3, 3)
-//        });
         graph.addSeries(series);
 
         // set date label formatter
@@ -85,19 +64,21 @@ public class ViewGraphLockDataActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
 
         // set manual x bounds to have nice steps
-//        graph.getViewport().setMinX(d1.getTime());
-//        graph.getViewport().setMaxX(d3.getTime());
-//        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(new Date(data.getEntries().get(0).getEpoch()).getTime());
+        graph.getViewport().setMaxX(new Date(data.getEntries().get(data.getNoEntries() - 1).getEpoch()).getTime());
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(1);
+        graph.getViewport().setXAxisBoundsManual(true);
     }
 
-    private DataPoint[] populateSeries(LineGraphSeries series) {
-        DataPoint points[] = new DataPoint[data.getNoEntries()];
+//    private DataPoint[] populateSeries(LineGraphSeries series) {
+//        DataPoint points[] = new DataPoint[data.getNoEntries()];
 //        int count = 0;
 //        for(LockDataEntry entry : data.getData()) {
 //            points[count] = new DataPoint(entry.getEpoch(), entry.getLocked());
 //        }
-        return points;
-    }
+//        return points;
+//    }
 
     //
 }
