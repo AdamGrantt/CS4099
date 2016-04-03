@@ -67,7 +67,7 @@ public class DataCollectionService extends Service {
             if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF))
             {
                 Log.v("$$$$$$", "In Method: ACTION_SCREEN_OFF");
-                writeToFile("Locked " + time);
+                writeToFile("0," + time);
 //                writeToFile("Locked " + year + ", " + month + ", " + day + ", " + hour + ", " + minute + ", " + second);
                 // onPause() will be called.
             }
@@ -75,7 +75,7 @@ public class DataCollectionService extends Service {
             {
                 Log.v("$$$$$$", "In Method: ACTION_SCREEN_ON");
 
-                writeToFile("Unlocked " + time);
+                writeToFile("1," + time);
 //                writeToFile("Unlocked " + year + ", " + month + ", " + day + ", " + hour + ", " + minute + ", " + second);
 
                 // on Resume will be called.

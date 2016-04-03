@@ -49,16 +49,6 @@ public class UserEntryActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         initFile();
         initForm();
     }
@@ -67,11 +57,6 @@ public class UserEntryActivity extends AppCompatActivity {
         dirPath = new File("/data/data/uk.co.adamgrant.cs4099/files");
         // Init file
         File file = new File(dirPath, "userSleepData.txt");
-
-        // TESTING PURPOSES - REFRESH FILE ON CREATION
-//        if(file.exists()){
-//            file.delete();
-//        }
 
         if (!file.exists()) {
             try {
