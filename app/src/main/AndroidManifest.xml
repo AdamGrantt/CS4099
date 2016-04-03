@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="uk.co.adamgrant.cs4099">
+    package="uk.co.adamgrant.cs4099" >
 
     <application
         android:allowBackup="true"
@@ -86,6 +85,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ViewDataHomeActivity" />
+        </activity>
+        <activity
+            android:name=".PersonalDetailsActivity"
+            android:label="@string/title_activity_personal_info"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="uk.co.adamgrant.cs4099.HomeActivity" />
         </activity>
     </application>
 

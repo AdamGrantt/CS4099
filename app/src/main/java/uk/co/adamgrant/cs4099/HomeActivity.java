@@ -52,4 +52,9 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void startPersonalDetails(View v) {
+        Intent intent = new Intent(this, PersonalDetailsActivity.class);
+        startActivity(intent);
+    }
+
 }
