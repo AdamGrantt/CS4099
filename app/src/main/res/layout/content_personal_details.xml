@@ -12,32 +12,39 @@
     tools:context="uk.co.adamgrant.cs4099.PersonalDetailsActivity">
 
     <TextView
-        android:id="@+id/PersonalDetailsTitle"
+        android:id="@+id/personal_details_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/personal_details_title"
         android:textSize="10pt">
     </TextView>
     <Spinner
-        android:id="@+id/SpinnerEditTitle"
+        android:id="@+id/spinner_edit_title"
         android:layout_height="wrap_content"
         android:prompt="@string/title_entry"
         android:layout_width="wrap_content"
         android:entries="@array/title_list">
     </Spinner>
     <EditText
-        android:id="@+id/EditTextName"
+        android:id="@+id/edit_name"
         android:layout_height="wrap_content"
         android:hint="@string/edit_name"
         android:inputType="textPersonName"
         android:layout_width="fill_parent">
     </EditText>
     <EditText
-        android:id="@+id/EditTextEmail"
+        android:id="@+id/edit_email"
         android:layout_height="wrap_content"
         android:hint="@string/edit_email"
         android:inputType="textEmailAddress"
         android:layout_width="fill_parent">
     </EditText>
+    <Button
+        android:id="@+id/button_personal_details_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_submit"
+        android:onClick="onSubmit"
+        android:visibility="visible"/>
 
 </LinearLayout>
