@@ -31,6 +31,25 @@
     <string name="button_submit_sleep_data">Submit</string>
     <string name="lock_graph">No Data Found.</string>
 
+    <string name="personal_details_title">Please enter your personal details:</string>
+    <string name="title_entry">Please Select Title</string>
+    <string name="edit_name">Your Name</string>
+    <string name="edit_email">Your Email</string>
+
+    <string name="title1">Mr</string>
+    <string name="title2">Ms</string>
+    <string name="title3">Miss</string>
+    <string name="title4">Mrs</string>
+    <string name="title5">Dr</string>
+
+    <string-array name="title_list">
+        <item>@string/title1</item>
+        <item>@string/title2</item>
+        <item>@string/title3</item>
+        <item>@string/title4</item>
+        <item>@string/title5</item>
+    </string-array>
+
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_user_entry">UserEntryActivity</string>
@@ -38,4 +57,5 @@
     <string name="title_activity_raw_data">RawDataActivity</string>
     <string name="title_activity_graph_data">GraphDataActivity</string>
     <string name="title_activity_view_raw_user_sleep_data">ViewRawUserSleepDataActivity</string>
+    <string name="title_activity_personal_info">PersonalInfoActivity</string>
 </resources>
