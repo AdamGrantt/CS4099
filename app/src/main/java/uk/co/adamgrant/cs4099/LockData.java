@@ -12,23 +12,23 @@ import java.util.ArrayList;
 /**
  */
 public class LockData {
-    ArrayList<LockDataEntry> data;
+    ArrayList<LockDataEntry> entries;
 
     public LockData() {
-        data = new ArrayList<>();
+        entries = new ArrayList<>();
         loadData();
     }
 
     public void addEntry(LockDataEntry entry) {
-        data.add(entry);
+        entries.add(entry);
     }
 
-    public ArrayList<LockDataEntry> getData() {
-        return data;
+    public ArrayList<LockDataEntry> getEntries() {
+        return entries;
     }
 
     public int getNoEntries() {
-        return data.size();
+        return entries.size();
     }
 
     private void loadData() {
@@ -43,7 +43,7 @@ public class LockData {
 
             while (((line = br.readLine()) != null) && !line.equals("")) {
                 String[] split = line.split(",");
-                data.add(new LockDataEntry(Integer.parseInt(split[0]), Long.parseLong(split[1])));
+                entries.add(new LockDataEntry(Integer.parseInt(split[0]), Long.parseLong(split[1])));
             }
             br.close();
         } catch (FileNotFoundException e) {

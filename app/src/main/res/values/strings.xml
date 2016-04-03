@@ -29,6 +29,7 @@
     <string name="slept_for">You slept for 0 hours and 0 minutes</string>
     <string name="sleep_entry_invalid"> Invalid</string>
     <string name="button_submit_sleep_data">Submit</string>
+    <string name="lock_graph">No Data Found.</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">HomeActivity</string>

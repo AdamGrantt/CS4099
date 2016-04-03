@@ -48,6 +48,7 @@ public class UserEntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_entry);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initFile();
         initForm();
