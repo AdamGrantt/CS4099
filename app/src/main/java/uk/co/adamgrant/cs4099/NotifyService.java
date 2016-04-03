@@ -24,7 +24,6 @@ public class NotifyService extends Service {
     private static final long UPDATE_INTERVAL = 1000*60*60*24;
 
     private Timer timer = new Timer();
-    boolean created = false;
 
     Calendar startingTime = Calendar.getInstance();
 
@@ -37,13 +36,11 @@ public class NotifyService extends Service {
     public void onCreate() {
 
         Log.d(TAG, "onCreate");
-//        Toast.makeText(this, "My Service Created", Toast.LENGTH_LONG).show();
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 17);
-        calendar.set(Calendar.MINUTE, 00);
-//        calendar.set(Calendar.MINUTE, Calendar.getInstance().get(Calendar.MINUTE) + 1);
-        calendar.set(Calendar.SECOND, 00);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
 
         long currentTime = ((startingTime.get(Calendar.HOUR_OF_DAY)*60*60) + (startingTime.get(Calendar.MINUTE)*60) + (startingTime.get(Calendar.SECOND))) * 1000;
 
@@ -74,7 +71,6 @@ public class NotifyService extends Service {
 
     @Override
     public void onDestroy() {
-//        Toast.makeText(this, "My Service Stopped", Toast.LENGTH_LONG).show();
         Log.v("$''''$", "service onDestroy");
 
         timer.cancel();

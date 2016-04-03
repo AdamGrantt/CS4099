@@ -34,11 +34,6 @@ public class DataCollectionService extends Service {
         // Init file
         File file = new File(dirPath, "lockData.txt");
 
-        // TESTING PURPOSES - REFRESH FILE ON CREATION
-        if(file.exists()){
-            file.delete();
-        }
-
         if (!file.exists()) {
             try {
                 file.createNewFile();
