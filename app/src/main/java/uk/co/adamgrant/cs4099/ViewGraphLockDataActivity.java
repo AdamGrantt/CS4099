@@ -62,13 +62,15 @@ public class ViewGraphLockDataActivity extends AppCompatActivity {
         // set date label formatter
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
         graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+        graph.getGridLabelRenderer().setNumVerticalLabels(2); // only 4 because of the space
 
         // set manual x bounds to have nice steps
         graph.getViewport().setMinX(new Date(data.getEntries().get(0).getEpoch()).getTime());
         graph.getViewport().setMaxX(new Date(data.getEntries().get(data.getNoEntries() - 1).getEpoch()).getTime());
+        graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(1);
-        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setYAxisBoundsManual(true);
     }
 
 //    private DataPoint[] populateSeries(LineGraphSeries series) {
