@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:prompt="@string/title_entry"
         android:layout_width="wrap_content"
-        android:entries="@array/title_list">
+        android:entries="@array/title_list"
+        >
     </Spinner>
     <EditText
         android:id="@+id/edit_name"

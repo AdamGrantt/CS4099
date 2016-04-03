@@ -51,7 +51,17 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        init();
+    }
+
+    public void init() {
         details = new PersonalDetails();
+
+        pageTitle = (TextView) findViewById(R.id.personal_details_title);
+        title = (Spinner) findViewById(R.id.spinner_edit_title);
+        name = (EditText) findViewById(R.id.edit_name);
+        email = (EditText) findViewById(R.id.edit_email);
+        button = (Button) findViewById(R.id.button_personal_details_submit);
 
         if(details.isEntered()){
             editable = false;
@@ -63,11 +73,6 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
     public void editable() {
         editable = true;
-        TextView pageTitle = (TextView) findViewById(R.id.personal_details_title);
-        Spinner title = (Spinner) findViewById(R.id.spinner_edit_title);
-        EditText name = (EditText) findViewById(R.id.edit_name);
-        EditText email = (EditText) findViewById(R.id.edit_email);
-        Button button = (Button) findViewById(R.id.button_personal_details_submit);
 
         pageTitle.setText(R.string.personal_details_title);
         title.setEnabled(true);
@@ -77,12 +82,6 @@ public class PersonalDetailsActivity extends AppCompatActivity {
     }
 
     public void loadForm() {
-        TextView pageTitle = (TextView) findViewById(R.id.personal_details_title);
-        Spinner title = (Spinner) findViewById(R.id.spinner_edit_title);
-        EditText name = (EditText) findViewById(R.id.edit_name);
-        EditText email = (EditText) findViewById(R.id.edit_email);
-        Button button = (Button) findViewById(R.id.button_personal_details_submit);
-
         pageTitle.setText("Your Personal Details:");
 
         title.setSelection(details.getTitle());
@@ -119,8 +118,6 @@ public class PersonalDetailsActivity extends AppCompatActivity {
     }
 
     private boolean checkEntryValid() {
-        EditText name = (EditText) findViewById(R.id.edit_name);
-        EditText email = (EditText) findViewById(R.id.edit_email);
         if(name.getText().toString().equals("")){
             return false;
         }
@@ -133,10 +130,6 @@ public class PersonalDetailsActivity extends AppCompatActivity {
     }
 
     private void detailsToFile() {
-        Spinner title = (Spinner) findViewById(R.id.spinner_edit_title);
-        EditText name = (EditText) findViewById(R.id.edit_name);
-        EditText email = (EditText) findViewById(R.id.edit_email);
-
         writeToFile(Integer.toString(title.getSelectedItemPosition()));
         writeToFile(name.getText().toString());
         writeToFile(email.getText().toString());
