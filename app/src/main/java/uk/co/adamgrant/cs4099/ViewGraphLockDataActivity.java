@@ -13,6 +13,9 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.Date;
 
+/**
+ * Activity which shows the Lock Data stored graphically
+ */
 public class ViewGraphLockDataActivity extends AppCompatActivity {
     GraphView graph;
     BarGraphSeries<DataPoint> series;
@@ -26,7 +29,9 @@ public class ViewGraphLockDataActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Initialises the LockData from file.
         data = new LockData();
+        // If data exists, initialise graph
         if(data.getEntries().size() != 0){
             Log.v("$$$$$$", "Initialising Lock Graph");
 
@@ -36,11 +41,16 @@ public class ViewGraphLockDataActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method which initialises the Lock Graph
+     */
     public void initLockGraph(){
         GraphView graph = (GraphView) this.findViewById(R.id.lock_graph);
 
+        // Initialises the data points using the lock data entries
         DataPoint points[] = new DataPoint[data.getNoEntries()*2];
         int count = 0;
+        // Iterates through the data entries, creating data points
         for(LockDataEntry entry: data.getEntries()) {
             Date date = new Date(entry.getEpoch());
             points[count] = new DataPoint(date, (entry.getLocked() + 1) % 2);
@@ -50,17 +60,14 @@ public class ViewGraphLockDataActivity extends AppCompatActivity {
         }
 
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
-
-        // you can directly pass Date objects to DataPoint-Constructor
-        // this will convert the Date to double via Date#getTime()
         graph.addSeries(series);
 
-        // set date label formatter
+        // Set date label formatter, allowing points to be passed as epoch format
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
-        graph.getGridLabelRenderer().setNumVerticalLabels(2); // only 4 because of the space
+        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+        graph.getGridLabelRenderer().setNumVerticalLabels(2);
 
-        // set manual x bounds to have nice steps
+        // Set manual axis bounds to ensure desired view
         graph.getViewport().setMinX(new Date(data.getEntries().get(0).getEpoch()).getTime());
         graph.getViewport().setMaxX(new Date(data.getEntries().get(data.getNoEntries() - 1).getEpoch()).getTime());
         graph.getViewport().setXAxisBoundsManual(true);

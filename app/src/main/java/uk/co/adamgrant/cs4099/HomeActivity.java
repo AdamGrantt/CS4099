@@ -8,8 +8,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+/**
+ * Activity for the Home Screen of the app, providing navigation
+ * throughout the entire app
+ */
 public class HomeActivity extends AppCompatActivity {
 
+    /**
+     * On HomeActivity creation, initialises layout and toolbar.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,16 +48,28 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Method to start the User Entry Activity
+     * @param v
+     */
     public void startUserEntry(View v) {
         Intent intent = new Intent(this, UserEntryActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Method to start the View Data Activity
+     * @param v
+     */
     public void startViewDataHome(View v) {
         Intent intent = new Intent(this, ViewDataHomeActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Method to start the Personal Details Activity
+     * @param v
+     */
     public void startPersonalDetails(View v) {
         Intent intent = new Intent(this, PersonalDetailsActivity.class);
         startActivity(intent);

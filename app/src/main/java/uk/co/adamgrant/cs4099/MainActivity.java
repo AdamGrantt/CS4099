@@ -7,12 +7,21 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+/**
+ * Main app activity, initialises Notification Service,
+ * Data Collection Service and allows the user to navigate
+ * to the home screen.
+ *
+ */
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        handleNotification();
+        // Initialises Notification
+        initNotifications();
+        // Initialises Data Collection
         initDataCollection();
 
         setContentView(R.layout.activity_main);
@@ -20,11 +29,17 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    private void handleNotification() {
+    /**
+     * Initialises the Notification Service.
+     */
+    private void initNotifications() {
         Intent notifyIntent = new Intent(this, NotifyService.class);
         startService(notifyIntent);
     }
 
+    /**
+     * Initialises the Data Collection Service
+     */
     private void initDataCollection() {
         Intent dataIntent = new Intent(this, DataCollectionService.class);
         startService(dataIntent);
@@ -54,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
         Log.v("$$$$$$", "In Method: onDestroy()");
     }
 
+    /**
+     * Starts the app and opens the Home Activity
+     * @param v
+     */
     public void start(View v) {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);

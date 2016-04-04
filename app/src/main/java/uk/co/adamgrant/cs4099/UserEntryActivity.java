@@ -19,6 +19,9 @@ import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * Activity to allow the User to enter their Sleep Data.
+ */
 public class UserEntryActivity extends AppCompatActivity {
     int hours = 0;
     int minutes = 0;
@@ -50,9 +53,11 @@ public class UserEntryActivity extends AppCompatActivity {
         initForm();
     }
 
+    /**
+     * Method which initialises the file used to store the user's sleep data
+     */
     public void initFile() {
         dirPath = new File("/data/data/uk.co.adamgrant.cs4099/files");
-        // Init file
         File file = new File(dirPath, "userSleepData.txt");
 
         if (!file.exists()) {
@@ -64,6 +69,10 @@ public class UserEntryActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method which writes String passed in to file.
+     * @param data String desired to be written to file
+     */
     private void writeToFile(String data) {
         try {
             OutputStreamWriter out = new OutputStreamWriter(this.openFileOutput("userSleepData.txt", Context.MODE_APPEND));
@@ -77,16 +86,27 @@ public class UserEntryActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method which initialises the form.
+     */
     public void initForm() {
-        TextView date = (TextView)findViewById(R.id.yesterday_date);
+        // Initialises the correct date
+        TextView date = (TextView)findViewById(R.id.date);
         date.setTextSize(16);
         Calendar c = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("EEEE, MMMM d, yyyy");
         date.setText("Todays date: " + format.format(c.getTime()));
 
+        // Initialises the listeners used to calculate time slept,
+        // and validity of data entered
         initListeners();
     }
 
+    /**
+     * Method which initialises the listeners for changes upon the
+     * EditTexts within the form.
+     * Recalculates time slept on each change
+     */
     public void initListeners() {
         sleptFor = (TextView)findViewById(R.id.slept_for);
         sleptAtDay = (EditText)findViewById(R.id.edit_sleep_at_day);
@@ -241,6 +261,10 @@ public class UserEntryActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method which checks the validity of the data entered by the user.
+     * @return result of validity of data check
+     */
     public boolean checkEntryValid() {
         TextView sleptUntilFlag = (TextView) findViewById(R.id.sleep_until_valid);
         TextView sleptAtFlag = (TextView) findViewById(R.id.sleep_at_valid);
@@ -331,11 +355,17 @@ public class UserEntryActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Method which calculates the time slept using the data entered by the user
+     */
     public void calcTimeSlept() {
         hourSlept();
         minutesSlept();
     }
 
+    /**
+     * Method which calculates the number of hours slept
+     */
     public void hourSlept() {
         hours = 0;
         int wokeHour;
@@ -352,6 +382,7 @@ public class UserEntryActivity extends AppCompatActivity {
             sleptHour = Integer.parseInt(sleptAtHour.getText().toString());
         }
 
+        // Navigates pre-midnight and post-midnight sleep/wake times
         if((wokeHour - sleptHour) > 0){
             hours = wokeHour - sleptHour;
         } else if ((wokeHour - sleptHour) < 0) {
@@ -359,6 +390,9 @@ public class UserEntryActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method which calculates number of minutes slept
+     */
     public void minutesSlept() {
         minutes = 0;
         int wokeMinute;
@@ -383,6 +417,11 @@ public class UserEntryActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method which reformats the data entered by the user
+     * @param editText form section to reformat
+     * @param no desired format
+     */
     public void formatEditText(EditText editText, String no) {
         if(editText.getText().toString().equals("")) {
             editText.setText(no);
@@ -395,6 +434,9 @@ public class UserEntryActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method which initialises the formatting of each EditText
+     */
     public void format() {
         formatEditText(sleptAtDay, "00");
         formatEditText(sleptAtMonth, "00");
@@ -408,13 +450,20 @@ public class UserEntryActivity extends AppCompatActivity {
         formatEditText(sleptUntilMinute, "00");
     }
 
+    /**
+     * Method which, on submission of data, checks entry is valid, and commits it to file
+     * @param v
+     */
     public void onSubmit(View v){
         if(checkEntryValid()) {
+            // Formats form fields
             format();
-            Toast.makeText(this, "Data Submitted", Toast.LENGTH_LONG).show();
 
+            // Writes data to file
             String toFile = sleptAtDay.getText() + "/" + sleptAtMonth.getText() + "/" + sleptAtYear.getText() + ": " + sleptAtHour.getText() + ":" + sleptAtMinute.getText() + " - " + sleptUntilDay.getText() + "/" + sleptUntilMonth.getText() + "/" + sleptUntilYear.getText() + ": " + sleptUntilHour.getText() + ":" + sleptUntilMinute.getText() + ", " + hours + ":" + minutes;
             writeToFile(toFile);
+
+            Toast.makeText(this, "Data Submitted", Toast.LENGTH_LONG).show();
 
             // Restart Activity - Refresh Form
             Intent intent = getIntent();
@@ -425,6 +474,10 @@ public class UserEntryActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method which calls the ViewRawUserSleepDataActivity class
+     * @param v
+     */
     public void startViewData(View v) {
         Intent intent = new Intent(this, ViewRawUserSleepDataActivity.class);
         startActivity(intent);

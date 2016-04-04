@@ -18,6 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
+/**
+ * Activity allowing the submission/viewing/editing of user Personal Details.
+ */
 public class PersonalDetailsActivity extends AppCompatActivity {
     private boolean editable;
     private PersonalDetails details;
@@ -34,6 +37,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_personal_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        // Initialises the Floating Action Button, on click makes the form editable.
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +55,9 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         init();
     }
 
+    /**
+     * Method which initialises the form, either leaving empty or loading user data
+     */
     public void init() {
         details = new PersonalDetails();
 
@@ -68,6 +75,10 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method which makes the form editable, enabling each part of the form,
+     * and making the save button visible.
+     */
     public void editable() {
         editable = true;
 
@@ -78,6 +89,10 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         button.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Method which loads the data from file into the form.
+     * Makes the form view only also.
+     */
     public void loadForm() {
         pageTitle.setText("Your Personal Details:");
 
@@ -93,9 +108,14 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         button.setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * Method called on saving of the form. Ensures all info has been filled in,
+     * writes data to file, then refreshes the Activity.
+     * @param v
+     */
     public void onSubmit(View v) {
         if(checkEntryValid()) {
-            // STORE FORM DATA TO FILE
+            // Either refreshes the file, or initialises if first data entry
             if (details.isEntered()) {
                 emptyFile();
             } else {
@@ -114,16 +134,27 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Returns the result of checking if all form sections have been completed.
+     * @return form completion boolean
+     */
     private boolean checkEntryValid() {
         return !name.getText().toString().equals("") && !email.getText().toString().equals("");
     }
 
+    /**
+     * Method which writes the user's Personal Details to file.
+     */
     private void detailsToFile() {
         writeToFile(Integer.toString(title.getSelectedItemPosition()));
         writeToFile(name.getText().toString());
         writeToFile(email.getText().toString());
     }
 
+    /**
+     * Method which writes data passed in to file.
+     * @param data data to write to file
+     */
     private void writeToFile(String data) {
         try {
             OutputStreamWriter out = new OutputStreamWriter(this.openFileOutput("personalDetails.txt", Context.MODE_APPEND));
@@ -137,17 +168,21 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method which deletes and re initialises the personalDetails.txt file
+     */
     private void emptyFile() {
         File dirPath = new File("/data/data/uk.co.adamgrant.cs4099/files");
-        // Init file
         File file = new File(dirPath, "personalDetails.txt");
         file.delete();
         initFile();
     }
 
+    /**
+     * Method which initialises the Personal Details file.
+     */
     private void initFile() {
         File dirPath = new File("/data/data/uk.co.adamgrant.cs4099/files");
-        // Init file
         File file = new File(dirPath, "personalDetails.txt");
 
         if (!file.exists()) {

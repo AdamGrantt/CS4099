@@ -14,6 +14,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Activity to allow the viewing of raw user sleep data data
+ */
 public class ViewRawUserSleepDataActivity extends AppCompatActivity {
 
     @Override
@@ -23,6 +26,7 @@ public class ViewRawUserSleepDataActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Initialises the FloatingActionButton to refresh the data when clicked.
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,21 +40,28 @@ public class ViewRawUserSleepDataActivity extends AppCompatActivity {
         displayData();
     }
 
+    /**
+     * Method which creates the TextView for the user sleep data and displays it.
+     */
     public void displayData() {
-        // Create the text view for the lock data
         TextView textView = (TextView) findViewById(R.id.raw_user_sleep_data);
         textView.setText(readFile());
     }
 
-    public String readFile() {
+    /**
+     * Method which reads the user sleep data data from file and returns it as String
+     * @return userSleepData.txt contents
+     */
+    public String readFile()
+    {
         File path = ViewRawUserSleepDataActivity.this.getFilesDir();
         File file = new File(path, "userSleepData.txt");
         String contents;
         int length = (int) file.length();
-
         byte[] bytes = new byte[length];
 
         FileInputStream in;
+        // Initialises FileInputStream using File and reads all bytes from file.
         try {
             in = new FileInputStream(file);
 
@@ -61,13 +72,14 @@ public class ViewRawUserSleepDataActivity extends AppCompatActivity {
             in.close();
         } catch (FileNotFoundException e) {
             contents = "File not found.";
-            Log.e("Raw Sleep Data", "File not found: " + e.toString());
+            Log.e("login activity", "File not found: " + e.toString());
         } catch (IOException e) {
             contents = "File cannot be read.";
-            Log.e("Raw Sleep Data", "Can not read file: " + e.toString());
+            Log.e("login activity", "Can not read file: " + e.toString());
         }
 
-        if (contents.equals(""))
+        // If file was empty, set text to display this.
+        if(contents.equals(""))
             contents = "No data found.";
 
         return contents;

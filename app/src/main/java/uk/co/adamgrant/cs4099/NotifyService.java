@@ -36,22 +36,23 @@ public class NotifyService extends Service {
 
     @Override
     public void onCreate() {
-
         Log.d(TAG, "onCreate");
 
+        // Initialise the calendar to be used for timing the notifications
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 17);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
 
+        // Convert the current time represented as a calendar, to epoch format.
         long currentTime = ((startingTime.get(Calendar.HOUR_OF_DAY)*60*60) + (startingTime.get(Calendar.MINUTE)*60) + (startingTime.get(Calendar.SECOND))) * 1000;
-
+        // Convert the target notification time represented as a calendar, to epoch format.
         long targetTime = ((calendar.get(Calendar.HOUR_OF_DAY)*60*60) + (calendar.get(Calendar.MINUTE)*60) + (calendar.get(Calendar.SECOND))) * 1000;
 
         long difference = targetTime - currentTime;
 
+        // Calculate time until next notification
         long delay;
-
         if(difference>0){
             delay = difference;
         } else if(difference < 0){
@@ -77,6 +78,10 @@ public class NotifyService extends Service {
         timer.cancel();
     }
 
+    /**
+     * Method which sends a notification to the user reminding them to
+     * enter last night's sleep data
+     */
     public void showNotification() {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
@@ -84,15 +89,12 @@ public class NotifyService extends Service {
                         .setContentTitle("Sleep Entry Reminder")
                         .setContentText("Remember to enter last nights sleep!");
 
-        // Creates an explicit intent for an Activity in your app
+        // Creates an explicit intent for the UserEntryActivity
         Intent resultIntent = new Intent(this, UserEntryActivity.class);
 
-        // The stack builder object will contain an artificial back stack for the
-        // started Activity.
-        // This ensures that navigating backward from the Activity leads out of
-        // your application to the Home screen.
+        // This ensures that when the user navigates to the app using the notification,
+        // that the backward navigation from the activity is correct.
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        // Adds the back stack for the Intent (but not the Intent itself)
         stackBuilder.addParentStack(UserEntryActivity.class);
         // Adds the Intent that starts the Activity to the top of the stack
         stackBuilder.addNextIntent(resultIntent);
@@ -101,6 +103,8 @@ public class NotifyService extends Service {
                         0,
                         PendingIntent.FLAG_ONE_SHOT
                 );
+        // Allows the user to click the notification and be brought straight
+        // to the data entry activity
         mBuilder.setContentIntent(resultPendingIntent);
         mBuilder.setAutoCancel(true);
 

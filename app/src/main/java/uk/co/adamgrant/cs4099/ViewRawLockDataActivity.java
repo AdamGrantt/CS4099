@@ -14,6 +14,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Activity to allow the viewing of raw lock/unlock data
+ */
 public class ViewRawLockDataActivity extends AppCompatActivity {
 
     @Override
@@ -23,6 +26,7 @@ public class ViewRawLockDataActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Initialises the FloatingActionButton to refresh the data when clicked.
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,25 +37,32 @@ public class ViewRawLockDataActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Displays the data from file
         displayData();
     }
 
+    /**
+     * Method which creates the TextView for the lock data and displays it.
+     */
     public void displayData() {
-        // Create the text view for the lock data
         TextView textView = (TextView) findViewById(R.id.raw_lock_data);
         textView.setText(readFile());
     }
 
+    /**
+     * Method which reads the lock data from file and returns it as String
+     * @return lockData.txt contents
+     */
     public String readFile()
     {
         File path = ViewRawLockDataActivity.this.getFilesDir();
         File file = new File(path, "lockData.txt");
         String contents;
         int length = (int) file.length();
-
         byte[] bytes = new byte[length];
 
         FileInputStream in;
+        // Initialises FileInputStream using File and reads all bytes from file.
         try {
             in = new FileInputStream(file);
 
@@ -68,6 +79,7 @@ public class ViewRawLockDataActivity extends AppCompatActivity {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
 
+        // If file was empty, set text to display this.
         if(contents.equals(""))
             contents = "No data found.";
 
