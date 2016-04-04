@@ -428,5 +428,9 @@ public class UserEntryActivity extends AppCompatActivity {
             Toast.makeText(this, "Entry Invalid - Fix Entry", Toast.LENGTH_LONG).show();
         }
     }
-    // ALLOW DELETION OF ENTRIES? - CONFIRMATION BEFORE SUBMISSION?
+
+    public void startViewData(View v) {
+        Intent intent = new Intent(this, ViewRawUserSleepDataActivity.class);
+        startActivity(intent);
+    }
 }
