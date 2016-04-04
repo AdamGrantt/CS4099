@@ -118,15 +118,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
     }
 
     private boolean checkEntryValid() {
-        if(name.getText().toString().equals("")){
-            return false;
-        }
-
-        if(email.getText().toString().equals("")){
-            return false;
-        }
-
-        return true;
+        return !name.getText().toString().equals("") && !email.getText().toString().equals("");
     }
 
     private void detailsToFile() {
