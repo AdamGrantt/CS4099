@@ -79,7 +79,7 @@ public class NotifyService extends Service {
     public void showNotification() {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.mipmap.sleep)
+                        .setSmallIcon(R.mipmap.icon)
                         .setContentTitle("Sleep Entry Reminder")
                         .setContentText("Remember to enter last nights sleep!");
 
