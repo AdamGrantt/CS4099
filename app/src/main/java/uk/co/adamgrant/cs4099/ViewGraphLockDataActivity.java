@@ -1,11 +1,9 @@
 package uk.co.adamgrant.cs4099;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.*;
@@ -13,8 +11,6 @@ import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-
-import java.util.Calendar;
 import java.util.Date;
 
 public class ViewGraphLockDataActivity extends AppCompatActivity {
@@ -73,14 +69,4 @@ public class ViewGraphLockDataActivity extends AppCompatActivity {
         graph.getViewport().setYAxisBoundsManual(true);
     }
 
-//    private DataPoint[] populateSeries(LineGraphSeries series) {
-//        DataPoint points[] = new DataPoint[data.getNoEntries()];
-//        int count = 0;
-//        for(LockDataEntry entry : data.getData()) {
-//            points[count] = new DataPoint(entry.getEpoch(), entry.getLocked());
-//        }
-//        return points;
-//    }
-
-    //
 }

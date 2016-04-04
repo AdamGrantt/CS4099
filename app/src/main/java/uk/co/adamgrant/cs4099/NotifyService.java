@@ -1,21 +1,23 @@
 package uk.co.adamgrant.cs4099;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Service which runs in the background sending out a notification
+ * at 17:00 every day, reminding the user to enter their sleep data
+ * from the previous night.
+ */
 public class NotifyService extends Service {
 
     private static final String TAG = "MyService";
@@ -71,8 +73,7 @@ public class NotifyService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.v("$''''$", "service onDestroy");
-
+        Log.v("$''''$", "notifyService onDestroy");
         timer.cancel();
     }
 

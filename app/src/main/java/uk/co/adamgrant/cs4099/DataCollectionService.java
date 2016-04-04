@@ -3,11 +3,8 @@ package uk.co.adamgrant.cs4099;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -16,9 +13,14 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Calendar;
 
+/**
+ * Service which runs in the background storing data relating to the locking
+ * and unlocking of the phone.
+ */
 public class DataCollectionService extends Service {
     private BroadcastReceiver mReceiver;
     private File dirPath;
+
     public DataCollectionService() {
         mReceiver = new ScreenReceiver();
         dirPath = new File("/data/data/uk.co.adamgrant.cs4099/files");
@@ -63,7 +65,6 @@ public class DataCollectionService extends Service {
             {
                 Log.v("$$$$$$", "In Method: ACTION_SCREEN_OFF");
                 writeToFile("0," + time);
-//                writeToFile("Locked " + year + ", " + month + ", " + day + ", " + hour + ", " + minute + ", " + second);
                 // onPause() will be called.
             }
             else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON))
@@ -71,18 +72,10 @@ public class DataCollectionService extends Service {
                 Log.v("$$$$$$", "In Method: ACTION_SCREEN_ON");
 
                 writeToFile("1," + time);
-//                writeToFile("Unlocked " + year + ", " + month + ", " + day + ", " + hour + ", " + minute + ", " + second);
-
-                // on Resume will be called.
-
-                // Better check for whether the screen was already locked
-                // If locked, do not take any resuming action in onResume()
-                // Suggest you, not to take any resuming action here.
             }
             else if (intent.getAction().equals(Intent.ACTION_USER_PRESENT))
             {
                 Log.v("$$$$$$", "In Method: ACTION_USER_PRESENT");
-                // Handle resuming events.
             }
         }
     }

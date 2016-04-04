@@ -1,28 +1,11 @@
 package uk.co.adamgrant.cs4099;
 
-import android.app.AlarmManager;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.RelativeLayout;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -51,15 +34,12 @@ public class MainActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle outState)
     {
         Log.v("$''''$", "In Method: onSaveInstanceState()");
-        // if necessary, set a flag to check whether we have to restore or not
-        // handle necessary savings...
     }
 
     @Override
     public void onRestoreInstanceState(Bundle outState)
     {
         Log.v("$''''$", "In Method: onRestoreInstanceState()");
-        // if any saved state, restore from it...
     }
 
     @Override
@@ -73,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         Log.v("$$$$$$", "In Method: onDestroy()");
     }
-
-    // ****************************** FOR HANDLING STORAGE OF LOCK/UNLOCK DATA ******************************
 
     public void start(View v) {
         Intent intent = new Intent(this, HomeActivity.class);

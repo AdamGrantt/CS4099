@@ -33,9 +33,7 @@ public class ViewRawLockDataActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // **************** ADDING DATA TEXT TO SCREEN ******************
         displayData();
-        // **************** ADDING DATA TEXT TO SCREEN ******************
     }
 
     public void displayData() {

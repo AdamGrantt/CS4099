@@ -2,7 +2,6 @@ package uk.co.adamgrant.cs4099;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -34,9 +33,7 @@ public class ViewRawUserSleepDataActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // **************** ADDING DATA TEXT TO SCREEN ******************
         displayData();
-        // **************** ADDING DATA TEXT TO SCREEN ******************
     }
 
     public void displayData() {
@@ -64,10 +61,10 @@ public class ViewRawUserSleepDataActivity extends AppCompatActivity {
             in.close();
         } catch (FileNotFoundException e) {
             contents = "File not found.";
-            Log.e("login activity", "File not found: " + e.toString());
+            Log.e("Raw Sleep Data", "File not found: " + e.toString());
         } catch (IOException e) {
             contents = "File cannot be read.";
-            Log.e("login activity", "Can not read file: " + e.toString());
+            Log.e("Raw Sleep Data", "Can not read file: " + e.toString());
         }
 
         if (contents.equals(""))
